@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            background-color: #1a1a2e;
+            color: white;
+            font-family: Arial;
+            text-align: center;
+            padding-top: 100px;
+        }
+        input {
+            padding: 10px;
+            width: 300px;
+            border-radius: 20px;
+            border: none;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #e94560;
+            color: white;
+            border-radius: 20px;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        #results {
+            margin-top: 30px;
+            font-size: 18px;
+            color: #e94560;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎬 Movie Recommender</h1>
+    <p>Find similar movies you like!</p>
+    <input id="movieInput" placeholder="Enter a Movie Name">
+    <button onclick="recommend()">Find Similar Movies</button>
+    <div id="results">Recommendations will appear here</div>
+
+    <script>
+        let movies = [
+            {title: "inception", genre: "sci-fi thriller"},
+            {title: "interstellar", genre: "sci-fi drama"},
+            {title: "the dark knight", genre: "action thriller"},
+            {title: "avengers", genre: "action superhero"},
+            {title: "arrival", genre: "sci-fi drama"},
+            {title: "tenet", genre: "sci-fi thriller"},
+            {title: "the matrix", genre: "sci-fi action"},
+            {title: "dune", genre: "sci-fi drama adventure"},
+            {title: "joker", genre: "drama thriller"},
+            {title: "oppenheimer", genre: "drama thriller history"},
+        ]
+
+        function recommend() {
+            let movieEntered = document.getElementById("movieInput").value.toLowerCase();
+            
+            let movieGenre = "";
+            for (let i=0; i<movies.length; i++) {
+                if (movieEntered === movies[i].title) {
+                    movieGenre = movies[i].genre;
+                }
+            }
+            
+            let recommendations = [];
+            for (let i=0; i<movies.length; i++) {
+                if (movieEntered !== movies[i].title) {
+                    let words = movieGenre.split(" ");
+                    for (let j=0; j<words.length; j++) {
+                        if (movies[i].genre.includes(words[j])) {
+                            recommendations.push(movies[i].title);
+                            break;
+                        }
+                    }
+                }
+            }
+            
+            if (recommendations.length > 0) {
+                document.getElementById("results").innerHTML = "Since you liked " + movieEntered + " you may also like: " + recommendations.join(", ");
+            } else {
+                document.getElementById("results").innerHTML = "Sorry! Movie not found!";
+            }
+        }
+    </script>
+</body>
+</html>
