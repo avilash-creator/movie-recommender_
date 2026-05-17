@@ -41,85 +41,93 @@
     <div id="results">Recommendations will appear here</div>
 
     <script>
-        let movies = [{title: "inception", genre: "sci-fi thriller mystery"},
-    {title: "interstellar", genre: "sci-fi drama adventure"},
-    {title: "the dark knight", genre: "action thriller crime"},
-    {title: "avengers", genre: "action superhero adventure"},
-    {title: "arrival", genre: "sci-fi drama mystery"},
-    {title: "tenet", genre: "sci-fi thriller action"},
-    {title: "the matrix", genre: "sci-fi action thriller"},
-    {title: "dune", genre: "sci-fi drama adventure"},
-    {title: "joker", genre: "drama thriller crime"},
-    {title: "oppenheimer", genre: "drama thriller history"},
-    {title: "parasite", genre: "thriller drama mystery"},
-    {title: "the batman", genre: "action thriller crime mystery"},
-    {title: "doctor strange", genre: "action superhero fantasy"},
-    {title: "guardians of the galaxy", genre: "action superhero comedy adventure"},
-    {title: "spider-man", genre: "action superhero adventure"},
-    {title: "the godfather", genre: "crime drama thriller"},
-    {title: "pulp fiction", genre: "crime thriller drama"},
-    {title: "fight club", genre: "drama thriller mystery"},
-    {title: "forrest gump", genre: "drama romance comedy"},
-    {title: "the shawshank redemption", genre: "drama thriller"},
-    {title: "goodfellas", genre: "crime drama thriller"},
-    {title: "the silence of the lambs", genre: "thriller crime horror mystery"},
-    {title: "schindler's list", genre: "drama history war"},
-    {title: "gravity", genre: "sci-fi thriller drama"},
-    {title: "world war z", genre: "action thriller horror"},
-    {title: "mad max fury road", genre: "action adventure sci-fi"},
-    {title: "blade runner 2049", genre: "sci-fi drama thriller"},
-    {title: "ex machina", genre: "sci-fi drama thriller mystery"},
-    {title: "get out", genre: "horror thriller mystery"},
-    {title: "us", genre: "horror thriller mystery"},
-    {title: "hereditary", genre: "horror drama thriller"},
-    {title: "midsommar", genre: "horror drama mystery"},
-    {title: "black panther", genre: "action superhero adventure"},
-    {title: "iron man", genre: "action superhero adventure"},
-    {title: "thor ragnarok", genre: "action superhero comedy adventure"},
-    {title: "captain america", genre: "action superhero adventure"},
-    {title: "wonder woman", genre: "action superhero adventure"},
-    {title: "aquaman", genre: "action superhero adventure fantasy"},
-    {title: "the lion king", genre: "animation drama adventure"},
-    {title: "toy story", genre: "animation comedy adventure"},
-    {title: "finding nemo", genre: "animation adventure comedy"},
-    {title: "up", genre: "animation drama adventure comedy"},
-    {title: "coco", genre: "animation drama adventure"},
-    {title: "soul", genre: "animation drama comedy"},
-    {title: "la la land", genre: "drama romance musical"},
-    {title: "whiplash", genre: "drama thriller music"},
-    {title: "the grand budapest hotel", genre: "comedy drama adventure"},
-    {title: "birdman", genre: "drama comedy thriller"},
-    {title: "1917", genre: "war drama thriller history"},
-    {title: "dunkirk", genre: "war drama thriller history"},
+        let movies = [
+            {title: "inception", genre: "sci-fi thriller mystery"},
+            {title: "interstellar", genre: "sci-fi drama adventure"},
+            {title: "the dark knight", genre: "action thriller crime"},
+            {title: "avengers", genre: "action superhero adventure"},
+            {title: "arrival", genre: "sci-fi drama mystery"},
+            {title: "tenet", genre: "sci-fi thriller action"},
+            {title: "the matrix", genre: "sci-fi action thriller"},
+            {title: "dune", genre: "sci-fi drama adventure"},
+            {title: "joker", genre: "drama thriller crime"},
+            {title: "oppenheimer", genre: "drama thriller history"},
+            {title: "parasite", genre: "thriller drama mystery"},
+            {title: "the batman", genre: "action thriller crime mystery"},
+            {title: "doctor strange", genre: "action superhero fantasy"},
+            {title: "guardians of the galaxy", genre: "action superhero comedy adventure"},
+            {title: "spider-man", genre: "action superhero adventure"},
+            {title: "the godfather", genre: "crime drama thriller"},
+            {title: "pulp fiction", genre: "crime thriller drama"},
+            {title: "fight club", genre: "drama thriller mystery"},
+            {title: "forrest gump", genre: "drama romance comedy"},
+            {title: "the shawshank redemption", genre: "drama thriller"},
+            {title: "goodfellas", genre: "crime drama thriller"},
+            {title: "the silence of the lambs", genre: "thriller crime horror mystery"},
+            {title: "schindler's list", genre: "drama history war"},
+            {title: "gravity", genre: "sci-fi thriller drama"},
+            {title: "world war z", genre: "action thriller horror"},
+            {title: "mad max fury road", genre: "action adventure sci-fi"},
+            {title: "blade runner 2049", genre: "sci-fi drama thriller"},
+            {title: "ex machina", genre: "sci-fi drama thriller mystery"},
+            {title: "get out", genre: "horror thriller mystery"},
+            {title: "us", genre: "horror thriller mystery"},
+            {title: "hereditary", genre: "horror drama thriller"},
+            {title: "midsommar", genre: "horror drama mystery"},
+            {title: "black panther", genre: "action superhero adventure"},
+            {title: "iron man", genre: "action superhero adventure"},
+            {title: "thor ragnarok", genre: "action superhero comedy adventure"},
+            {title: "captain america", genre: "action superhero adventure"},
+            {title: "wonder woman", genre: "action superhero adventure"},
+            {title: "aquaman", genre: "action superhero adventure fantasy"},
+            {title: "the lion king", genre: "animation drama adventure"},
+            {title: "toy story", genre: "animation comedy adventure"},
+            {title: "finding nemo", genre: "animation adventure comedy"},
+            {title: "up", genre: "animation drama adventure comedy"},
+            {title: "coco", genre: "animation drama adventure"},
+            {title: "soul", genre: "animation drama comedy"},
+            {title: "la la land", genre: "drama romance musical"},
+            {title: "whiplash", genre: "drama thriller music"},
+            {title: "the grand budapest hotel", genre: "comedy drama adventure"},
+            {title: "birdman", genre: "drama comedy thriller"},
+            {title: "1917", genre: "war drama thriller history"},
+            {title: "dunkirk", genre: "war drama thriller history"},
         ]
 
         function recommend() {
             let movieEntered = document.getElementById("movieInput").value.toLowerCase();
-            
+
             let movieGenre = "";
             for (let i=0; i<movies.length; i++) {
                 if (movieEntered === movies[i].title) {
                     movieGenre = movies[i].genre;
                 }
             }
-            
+
             let recommendations = [];
             for (let i=0; i<movies.length; i++) {
                 if (movieEntered !== movies[i].title) {
                     let words = movieGenre.split(" ");
+                    let matchCount = 0;
                     for (let j=0; j<words.length; j++) {
                         if (movies[i].genre.includes(words[j])) {
-                            recommendations.push(movies[i].title);
-                            break;
+                            matchCount++;
                         }
+                    }
+                    if (matchCount >= 2) {
+                        recommendations.push(movies[i].title);
                     }
                 }
             }
-            
+
             if (recommendations.length > 0) {
-                document.getElementById("results").innerHTML = "Since you liked " + movieEntered + " you may also like: " + recommendations.join(", ");
+                let resultHTML = "Since you liked <b>" + movieEntered + "</b> you may also like:<br><br>";
+                for (let i=0; i<recommendations.length; i++) {
+                    resultHTML = resultHTML + "🎬 " + recommendations[i] + "<br>";
+                }
+                document.getElementById("results").innerHTML = resultHTML;
             } else {
-                document.getElementById("results").innerHTML = "Sorry! Movie not found!";
+                document.getElementById("results").innerHTML = "Sorry! Movie not found in our database!";
             }
         }
     </script>
